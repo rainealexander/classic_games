@@ -59,10 +59,50 @@ function createBoard() {
   cardArray.forEach((card, index) => {
     let cardElement = document.createElement('img');
     cardElement.setAttribute('src','assets/cardback2.png');
-    cardElement.setAttribute('data-id', index);
+    cardElement.setAttribute('id', index);
     cardElement.setAttribute('class', 'card-image');
+    cardElement.addEventListener('click', flipCard);
     cardGrid.appendChild(cardElement);
   })
 }
 
 createBoard();
+
+
+let cardPick = null;
+let matches = [];
+
+function checkMatch (card) {
+  const card1 = document.getElementById(cardPick.id);
+  const card2 = document.getElementById(card.id)
+  if (card.name === cardPick.name) {
+    // match!
+    card1.setAttribute('src', 'assets/checkcard.png');
+    card2.setAttribute('src', 'assets/checkcard.png');
+    card1.removeEventListener('click', flipCard);
+    card2.removeEventListener('click', flipCard);
+    matches.push(card.name);
+    cardPick = null;
+    // TODO: update score and matches array
+    return;
+  }
+  // no match
+  card1.setAttribute('src', 'assets/cardback2.png');
+  card2.setAttribute('src', 'assets/cardback2.png');
+  
+  cardPick = null;
+  return;
+}
+
+function flipCard() {
+  const cardId = this.getAttribute('id');
+  this.setAttribute('src', cardArray[cardId].image);
+  if (!cardPick) {
+    cardPick = { name: cardArray[cardId].name, id: cardId };
+  } else {
+    // TODO: check for duplicate card picked
+    setTimeout(() => {
+      checkMatch({ name: cardArray[cardId].name, id: cardId });
+    }, 750);
+  }
+}
