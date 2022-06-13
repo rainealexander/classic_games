@@ -53,3 +53,16 @@ const cardArray = [
 cardArray.sort(() => Math.random() - 0.5);
 
 const cardGrid = document.getElementById('card-grid');
+
+// make board
+function createBoard() {
+  cardArray.forEach((card, index) => {
+    let cardElement = document.createElement('img');
+    cardElement.setAttribute('src','assets/cardback2.png');
+    cardElement.setAttribute('data-id', index);
+    cardElement.setAttribute('class', 'card-image');
+    cardGrid.appendChild(cardElement);
+  })
+}
+
+createBoard();
