@@ -53,6 +53,7 @@ const cardArray = [
 cardArray.sort(() => Math.random() - 0.5);
 
 const cardGrid = document.getElementById('card-grid');
+const gameScore = document.getElementById('game-score');
 
 // make board
 function createBoard() {
@@ -83,7 +84,11 @@ function checkMatch (card) {
     card2.removeEventListener('click', flipCard);
     matches.push(card.name);
     cardPick = null;
-    // TODO: update score and matches array
+    gameScore.innerHTML = matches.length;
+    // check win condition
+    if (matches.length === cardArray.length / 2) {
+      gameScore.innerHTML = 'congrats, you found all of the matches!'
+    }
     return;
   }
   // no match
