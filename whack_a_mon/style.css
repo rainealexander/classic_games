@@ -1,0 +1,13 @@
+.grid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 390px;
+   height: 390px;
+}
+
+.spawn {
+  height: 128px;
+  width: 128px;
+  border: 1px solid black;
+}
