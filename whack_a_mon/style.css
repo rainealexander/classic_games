@@ -11,3 +11,7 @@
   width: 128px;
   border: 1px solid black;
 }
+
+.monster {
+  background-color: darkred;
+}
