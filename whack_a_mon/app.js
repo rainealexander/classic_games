@@ -15,12 +15,10 @@ const spriteHeight = 16;
 const drawWidth = 128;
 const drawHeight = 128;
 
-// let spawnContexts = [];
-// spawnPoints.forEach(spawn => {
-//   spawnContexts.push(spawn.getContext('2d'));
-// });
-
-// console.log('Spawn Contexts: ', spawnContexts);
+let spawnContexts = [];
+spawnPoints.forEach(spawn => {
+  spawnContexts.push(spawn.getContext('2d'));
+});
 
 spawnBoxes.forEach(spawnBox => {
   spawnBox.addEventListener('mousedown', () => {
@@ -38,6 +36,7 @@ function chooseSpawn() {
   while (nextSpawn === currentSpawn) {
     nextSpawn = Math.floor(Math.random() * 9);
   }
+  spawnContexts[currentSpawn].clearRect(0, 0, 64, 64);
   // lastSpawn = currentSpawn;
   spawnPoints[currentSpawn].classList.remove('monster');
   currentSpawn = nextSpawn;
@@ -64,5 +63,5 @@ function moveMonster() {
   timerId = setInterval(chooseSpawn, 1000);
 }
 
-// moveMonster();
-chooseSpawn();
+moveMonster();
+// chooseSpawn();
