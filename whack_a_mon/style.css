@@ -1,17 +1,26 @@
+
 .grid {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  width: 390px;
-   height: 390px;
+  width: 396px;
+   height: 396px;
+}
+
+.spawn-box {
+  padding: 0;
+  margin: 0;
+  border: 1px solid black;
+}
+
+canvas {
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -webkit-crisp-edges;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
 }
 
 .spawn {
   height: 128px;
   width: 128px;
-  border: 1px solid black;
-}
-
-.monster {
-  background-color: darkred;
 }
