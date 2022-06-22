@@ -6,9 +6,11 @@ const timeDisplay = document.querySelector('#time-left');
 const scoreDisplay = document.querySelector('#score');
 
 let score = 0;
-// let lastSpawn = 0;
 let currentSpawn = 0;
 let monsterPosition = 0;
+let currentTime = 60;
+
+let timerInterval = null;
 
 const spriteWidth = 16;
 const spriteHeight = 16;
@@ -59,9 +61,23 @@ function drawMonster(spawn) {
 }
 
 function moveMonster() {
-  let timerId = null;
-  timerId = setInterval(chooseSpawn, 1000);
+  timerInterval = null;
+  timerInterval = setInterval(chooseSpawn, 750);
 }
 
 moveMonster();
-// chooseSpawn();
+
+function countDown() {
+  currentTime--;
+  timeDisplay.textContent = currentTime;
+
+  if (currentTime === 0) {
+    clearInterval(countdownInterval);
+    clearInterval(timeInterval);
+    alert(`Game Over! Final Score: ${score}`);
+  }
+}
+
+countDown();
+
+let countdownInterval = setInterval(countDown, 1000);
